@@ -1,0 +1,37 @@
+public class SelectionSortPart1UTS {
+    public static void main(String[] args) {
+        String[] nama = {"Aditya", "Bella", "Citra", "Erlangga", "Dimas", "Farrah", "Gilang", "Hanna", "Larasati", "Natalie", "Nadia", "Risa", "Salsabila", "Tegar", "Vina"};
+        String[] npm = {"210001", "210002", "210003", "210004", "210005", "210006", "210007", "210008", "210009", "210010", "210011", "210012", "210013", "210014", "210015"};
+        int[] nilai = {85, 90, 78, 92, 88, 80, 95, 91, 87, 89, 93, 86, 94, 82, 91};
+
+        int n = nilai.length;
+
+        for (int i=0; i<n-1; i++) {
+            int minIndex = i;
+            for (int a=i+1; a<n; a++) {
+                if (nilai[a]>nilai[minIndex]) {
+                    minIndex=a;
+                }
+            }
+            int tempNilai = nilai[minIndex];
+            nilai[minIndex]=nilai[i];
+            nilai[i]=tempNilai;
+
+            String tempNama=nama[minIndex];
+            nama[minIndex]=nama[i];
+            nama[i]=tempNama;
+
+            String tempNpm=npm[minIndex];
+            npm[minIndex]=npm[i];
+            npm[i]=tempNpm;
+        }
+        System.out.println("-------------------------------------");
+        System.out.printf("%-10s | %-15s | %-5s\n", "Nama", "NPM", "Nilai");
+        System.out.println("-------------------------------------");
+
+        for (int i=0; i<n; i++) {
+            System.out.printf("%-10s | %-15s | %-5d\n", nama[i], npm[i], nilai[i]);
+        }
+        System.out.println("-------------------------------------");
+    }
+}
