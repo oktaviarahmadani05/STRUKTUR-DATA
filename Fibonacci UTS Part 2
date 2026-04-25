@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class FibonacciPart2UTS {
+    //Metode rekursif untuk menemukan angka Fibonacci ke-n
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Masukkan jumlah suku Fibonacci: ");
+        int n = input.nextInt();
+        System.out.println("Deret Fibonacci hingga suku ke-" + n + "adalah: ");
+
+        //Loop untuk mencetak deret Fibonacci dari indeks 0 hingga suku ke-n
+        for (int i = 0; i <= n; i++) {
+            System.out.print(fibonacci(i) + " ");
+            if (i < n) {
+                System.out.print(", ");
+            }
+        }
+        input.close();
+    }
+    
+}
