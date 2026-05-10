@@ -1,0 +1,91 @@
+/**
+ * Nama : [Oktavia Rahmadani]
+ * NIM  : [25161562103]
+ * Tugas: Implementasi Stack Manual (Array) - Tiket Bioskop
+ */
+public class TiketBioskop {
+     // === BAGIAN 1: Deklarasi Stack ===
+    static String[] stack = new String[10];
+    static int top = -1;
+
+    // === BAGIAN 2: Operasi Stack ===
+
+    // Menambahkan data ke tumpukan
+    static void push(String tiket) {
+        // Cek overflow (penuh)
+        if (top == stack.length - 1) {
+            System.out.println("Stack penuh! Tidak bisa menambahkan tiket.");
+        } else {
+            top++;
+            stack[top] = tiket;
+        }
+    }
+
+    // Mengambil dan menghapus data teratas
+    static String pop() {
+        // Cek underflow (kosong)
+        if (isEmpty()) {
+            System.out.println("Stack kosong! Tidak bisa mengambil tiket.");
+            return "Stack kosong!";
+        } else {
+            String temp = stack[top];
+            top--;
+            return temp;
+        }
+    }
+
+    // Melihat data teratas tanpa menghapus
+    static String peek() {
+        if (isEmpty()) {
+            return "Stack kosong";
+        } else {
+            return stack[top];
+        }
+    }
+
+    static boolean isEmpty() {
+        return top == -1;
+    }
+
+    // Bonus: Menghitung total harga tiket dalam stack
+    static void hitungTotal() {
+        int total = 0;
+        for (int i = 0; i <= top; i++) {
+            // Mengambil angka saja dari string (asumsi format: ...Rp50.000)
+            String hargaStr = stack[i].replaceAll("[^0-9]", "");
+            total += Integer.parseInt(hargaStr);
+        }
+        System.out.println("Total transaksi: Rp" + String.format("%, d", total).replace(',', '.'));
+    }
+
+    static void tampilkanStack() {
+        System.out.println("=== Isi Stack (TOP -> BOTTOM) ===");
+        for (int i = top; i >= 0; i--) {
+            System.out.println(" | " + stack[i] + " |");
+        }
+        System.out.println("================================");
+    }
+
+    // === BAGIAN 3: Main Program ===
+    public static void main(String[] args) {
+        // 1. Push 3 transaksi
+        push("Tiket-A01: Avengers Rp50.000");
+        push("Tiket-B02: Interstellar Rp45.000");
+        push("Tiket-C03: Inception Rp45.000");
+
+       // Bonus: Tampilkan total
+        hitungTotal();
+
+        // 2. Tampilkan seluruh isi stack
+        tampilkanStack();
+
+        // 3. Tampilkan tiket paling atas (peek)
+        System.out.println("Tiket terakhir masuk: " + peek());
+
+        // 4. Batalkan (pop) 1 transaksi dan tampilkan
+        System.out.println("Tiket dibatalkan: " + pop());
+
+        // 5. Tampilkan kembali isi stack
+        tampilkanStack();
+    }
+}
